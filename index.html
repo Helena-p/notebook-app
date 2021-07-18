@@ -9,11 +9,13 @@
     </head>
     <body>
         <main class="container">
+            <!-- Decorative Image -->
             <img
                 class="img"
                 alt="Notebooks lying on a table with a pen on top"
                 src="https://images.unsplash.com/photo-1473186505569-9c61870c11f9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTJ8fHdyaXRpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
             />
+            <!-- Announcements to screenreaders -->
             <div id="notification" aria-live="polite">&nbsp;</div>
             <form id="notebook">
                 <label for="note">Notes</label>
@@ -27,6 +29,7 @@
                     aria-atomic="true"
                 ></textarea>
             </form>
+            <!-- Save data to localstorage by button click -->
             <button type="submit" role="button" class="form-btn">Save</button>
         </main>
 

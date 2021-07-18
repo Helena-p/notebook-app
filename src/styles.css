@@ -6,11 +6,13 @@ body {
 .container {
     height: 90vh;
     width: 100%;
+    display: -ms-grid;
     display: grid;
     place-content: center;
     gap: 2rem;
 }
 
+/* --------- Form --------- */
 #notebook {
     width: 100%;
     max-width: 50rem;
@@ -23,6 +25,7 @@ body {
     padding: 0.4rem;
 }
 
+/* --------- Image --------- */
 .img {
     width: calc(100vmin / 1.8);
     border: 5px solid transparent;
@@ -35,6 +38,8 @@ body {
         0 42.9px 46.1px -35px rgba(0, 0, 0, 0.055),
         0 93px 80px -35px rgba(0, 0, 0, 0.1);
 }
+
+/* --------- Form Button --------- */
 .form-btn {
     width: 70%;
     margin: auto;

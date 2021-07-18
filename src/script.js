@@ -29,6 +29,12 @@ const onSaveHandler = (fn) => {
     console.log(data);
 };
 
+const renderNotes = () => {
+    notes.textContent = localStorage.getItem("note");
+};
+
+window.onload = renderNotes();
+
 //==================
 // EVENTHANDLERS
 //==================

@@ -13,8 +13,11 @@ const removedNote = "Your note have been removed!";
 // FUNCTIONS
 //==================
 
+/**
+ * Notification to user
+ */
 const showStatus = (message) => {
-    // Inform user of saved note
+    // Inform user of note status
     setTimeout(() => {
         notification.textContent = message;
     }, 1);
@@ -28,8 +31,8 @@ const showStatus = (message) => {
 /**
  * Takes data from input and store
  * in localstorage in key/value pair
- * @param {function} Function   String as key/value pair
- * @return {object}
+ * @param {Event} Event   The event object
+ * @return {String}
  */
 const onSaveHandler = (e) => {
     e.preventDefault();
@@ -39,6 +42,10 @@ const onSaveHandler = (e) => {
     showStatus(savedNote);
 };
 
+/**
+ * Removes note from local storage
+ * @param {Event} event  The event object
+ */
 const removeNoteHandler = (e) => {
     e.preventDefault();
     if (!note.value) return;

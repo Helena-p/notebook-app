@@ -25,6 +25,16 @@ body {
     padding: 0.4rem;
 }
 
+#notification {
+    padding: 1rem;
+}
+
+.form-label {
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #333;
+}
+
 /* --------- Image --------- */
 .img {
     width: calc(100vmin / 1.8);
@@ -42,8 +52,9 @@ body {
 /* --------- Form Button --------- */
 .form-btn {
     width: 70%;
+    height: 3.2rem;
+    font-size: 1.4rem;
     margin: auto;
-    padding: 0.5rem;
     border-radius: 0.2rem;
     cursor: pointer;
 

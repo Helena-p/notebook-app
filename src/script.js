@@ -4,6 +4,7 @@
 //==================
 const notes = document.querySelector("#note");
 const btn = document.querySelector(".form-btn");
+const notification = document.querySelector("#notification");
 let data;
 
 //==================
@@ -25,15 +26,28 @@ const inputHandler = () => {
  * @return {object}
  */
 const onSaveHandler = (fn) => {
+    if (!data) return;
     localStorage.setItem("note", data);
-    console.log(data);
+
+    // Inform user of saved note
+    setTimeout(() => {
+        notification.textContent = "You're notes were saved successfully!";
+    }, 1);
+
+    // Remove notification after 3 sec
+    setTimeout(() => {
+        notification.textContent = "";
+    }, 3000);
 };
 
+/**
+ * Display note in textarea on page load
+ */
 const renderNotes = () => {
     notes.textContent = localStorage.getItem("note");
 };
 
-window.onload = renderNotes();
+renderNotes();
 
 //==================
 // EVENTHANDLERS

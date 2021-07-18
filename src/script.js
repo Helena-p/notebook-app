@@ -2,33 +2,16 @@
 //==================
 // VARIABLES
 //==================
+const notebook = document.querySelector("#notebook");
 const notes = document.querySelector("#note");
 const btn = document.querySelector(".form-btn");
 const notification = document.querySelector("#notification");
-let data;
 
 //==================
 // FUNCTIONS
 //==================
 
-/**
- * Takes input from textarea and store in data variable
- * @param {string} String   Textarea input value
- */
-const inputHandler = () => {
-    data = notes.value;
-};
-
-/**
- * Takes data from inputHandler function and store
- * in localstorage in key/value pair
- * @param {function} Function   String as key/value pair
- * @return {object}
- */
-const onSaveHandler = (fn) => {
-    if (!data) return;
-    localStorage.setItem("note", data);
-
+const showStatus = () => {
     // Inform user of saved note
     setTimeout(() => {
         notification.textContent = "You're notes were saved successfully!";
@@ -38,6 +21,20 @@ const onSaveHandler = (fn) => {
     setTimeout(() => {
         notification.textContent = "";
     }, 3000);
+};
+
+/**
+ * Takes data from input and store
+ * in localstorage in key/value pair
+ * @param {function} Function   String as key/value pair
+ * @return {object}
+ */
+const onSaveHandler = (e) => {
+    e.preventDefault();
+    if (!note.value) return;
+    localStorage.setItem("note", note.value);
+
+    showStatus();
 };
 
 /**
@@ -53,5 +50,5 @@ renderNotes();
 // EVENTHANDLERS
 //==================
 
-notes.addEventListener("input", inputHandler);
+notebook.addEventListener("submit", onSaveHandler);
 btn.addEventListener("click", onSaveHandler);

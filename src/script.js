@@ -4,17 +4,19 @@
 //==================
 const notebook = document.querySelector("#notebook");
 const notes = document.querySelector("#note");
-const btn = document.querySelector(".form-btn");
+const removeBtn = document.querySelector(".remove-btn");
 const notification = document.querySelector("#notification");
+const savedNote = "You're notes were saved successfully!";
+const removedNote = "Your note have been removed!";
 
 //==================
 // FUNCTIONS
 //==================
 
-const showStatus = () => {
+const showStatus = (message) => {
     // Inform user of saved note
     setTimeout(() => {
-        notification.textContent = "You're notes were saved successfully!";
+        notification.textContent = message;
     }, 1);
 
     // Remove notification after 3 sec
@@ -34,14 +36,24 @@ const onSaveHandler = (e) => {
     if (!note.value) return;
     localStorage.setItem("note", note.value);
 
-    showStatus();
+    showStatus(savedNote);
+};
+
+const removeNoteHandler = (e) => {
+    e.preventDefault();
+    if (!note.value) return;
+    localStorage.removeItem("note");
+    showStatus(removedNote);
+    note.value = "";
 };
 
 /**
  * Display note in textarea on page load
  */
 const renderNotes = () => {
-    notes.textContent = localStorage.getItem("note");
+    let saved = localStorage.getItem("note");
+    if (!saved) return;
+    note.textContent = saved;
 };
 
 renderNotes();
@@ -51,4 +63,4 @@ renderNotes();
 //==================
 
 notebook.addEventListener("submit", onSaveHandler);
-btn.addEventListener("click", onSaveHandler);
+notebook.addEventListener("reset", removeNoteHandler);

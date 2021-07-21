@@ -3,14 +3,9 @@
 // VARIABLES
 //==================
 const notebook = document.querySelector("#notebook");
-const note = document.querySelector("#note");
 const notification = document.querySelector("#notification");
 const savedNote = "You're notes were saved successfully!";
 const removedNote = "Your note have been removed!";
-
-// Get all field data from the form
-// returns a FormData object
-let data = new FormData(notebook);
 
 //==================
 // FUNCTIONS
@@ -32,8 +27,12 @@ const showStatus = (message) => {
     }, 3000);
 };
 
-// Helper function, convert FormData object into plain object
-// Pass in the FormData object as argument
+/*!
+ * Serialize all form data into an object
+ * (c) 2021 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {FormData} data The FormData object to serialize
+ * @return {String}        The serialized form data
+ */
 const serialize = (data) => {
     let obj = {};
     for (let [key, value] of data) {
@@ -57,11 +56,29 @@ const serialize = (data) => {
  */
 const onSaveHandler = (e) => {
     e.preventDefault();
-    if (!note.value) return;
-    localStorage.setItem("note", note.value);
+    let notes = serialize(new FormData(notebook));
+    localStorage.setItem("notes", JSON.stringify(notes));
 
     showStatus(savedNote);
 };
+
+/**
+ * Display note in textarea on page load
+ */
+const renderNotes = () => {
+    let saved = JSON.parse(localStorage.getItem("notes"));
+
+    if (!saved) return;
+
+    let fields = notebook.elements;
+
+    for (let field of fields) {
+        if (!saved[field.name]) continue;
+        field.value = saved[field.name];
+    }
+};
+
+renderNotes();
 
 /**
  * Removes note from local storage
@@ -69,22 +86,11 @@ const onSaveHandler = (e) => {
  */
 const removeNoteHandler = (e) => {
     e.preventDefault();
-    if (!note.value) return;
-    localStorage.removeItem("note");
+    localStorage.removeItem("notes");
     showStatus(removedNote);
+    title.value = "";
     note.value = "";
 };
-
-/**
- * Display note in textarea on page load
- */
-const renderNotes = () => {
-    let saved = localStorage.getItem("note");
-    if (!saved) return;
-    note.textContent = saved;
-};
-
-renderNotes();
 
 //==================
 // EVENTHANDLERS

@@ -4,7 +4,7 @@ body {
 }
 
 .container {
-    height: 90vh;
+    height: 100vh;
     width: 100%;
     display: -ms-grid;
     display: grid;
@@ -29,10 +29,15 @@ body {
     padding: 1rem;
 }
 
-.form-label {
+.form_label {
     padding-bottom: 1rem;
     font-size: 1.2rem;
     color: #333;
+}
+
+.form_input {
+    margin-bottom: 1rem;
+    padding: 0.6rem;
 }
 
 /* --------- Image --------- */
@@ -50,7 +55,7 @@ body {
 }
 
 /* --------- Form Button --------- */
-.save-btn {
+.save_btn {
     width: 70%;
     height: 3.2rem;
     font-size: 1.4rem;
@@ -65,14 +70,14 @@ body {
     border: 2px solid transparent;
 }
 
-.save-btn:hover,
-.save-btn:focus {
+.save_btn:hover,
+.save_btn:focus {
     background-color: transparent;
     color: rgb(172, 150, 78);
     border: 2px solid rgb(172, 150, 78);
 }
 
-.remove-btn {
+.remove_btn {
     width: 60%;
     height: 3.2rem;
     margin: auto;
@@ -82,8 +87,8 @@ body {
     border: 2px solid transparent;
 }
 
-.remove-btn:hover,
-.remove-btn:focus {
+.remove_btn:hover,
+.remove_btn:focus {
     border: 2px solid orangered;
     border-radius: 0.2rem;
 }

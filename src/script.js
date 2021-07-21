@@ -3,17 +3,21 @@
 // VARIABLES
 //==================
 const notebook = document.querySelector("#notebook");
-const notes = document.querySelector("#note");
-const removeBtn = document.querySelector(".remove-btn");
+const note = document.querySelector("#note");
 const notification = document.querySelector("#notification");
 const savedNote = "You're notes were saved successfully!";
 const removedNote = "Your note have been removed!";
+
+// Get all field data from the form
+// returns a FormData object
+let data = new FormData(notebook);
 
 //==================
 // FUNCTIONS
 //==================
 
 /**
+ * Helper function
  * Notification to user
  */
 const showStatus = (message) => {
@@ -26,6 +30,23 @@ const showStatus = (message) => {
     setTimeout(() => {
         notification.textContent = "";
     }, 3000);
+};
+
+// Helper function, convert FormData object into plain object
+// Pass in the FormData object as argument
+const serialize = (data) => {
+    let obj = {};
+    for (let [key, value] of data) {
+        if (obj[key] !== undefined) {
+            if (!Array.isArray(obj[key])) {
+                obj[key] = [obj[key]];
+            }
+            obj[key].push(value);
+        } else {
+            obj[key] = value;
+        }
+    }
+    return obj;
 };
 
 /**

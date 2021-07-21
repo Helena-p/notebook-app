@@ -17,8 +17,11 @@
             />
             <!-- Announcements to screenreaders -->
             <div id="notification" aria-live="polite">&nbsp;</div>
+            <!-- Form with title input and text input for notes -->
             <form id="notebook">
-                <label class="form-label" for="note">My Notes</label>
+                <label class="form_label" for="title">Title</label>
+                <input class="form_input" type="text" name="title" id="title" />
+                <label class="form_label" for="note">My Notes</label>
                 <textarea
                     id="note"
                     name="note"
@@ -28,10 +31,11 @@
                     aria-live="polite"
                     aria-atomic="true"
                 ></textarea>
-                <button type="submit" role="button" class="save-btn">
+                <input type="hidden" name="noteId" value="1" />
+                <button type="submit" role="button" class="save_btn">
                     Save
                 </button>
-                <button type="reset" role="button" class="remove-btn">
+                <button type="reset" role="button" class="remove_btn">
                     Remove Note
                 </button>
             </form>
